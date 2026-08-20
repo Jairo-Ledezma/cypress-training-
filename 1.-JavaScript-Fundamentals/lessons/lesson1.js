@@ -36,3 +36,4 @@ var ageOfBrother = 25 // number
 var isHeMarried = false // boolean can have only 2 values true or false 
 var yearsInMarriage = null // null represents the absence of a value, not a specific value itself.
 var numberOfCars = undefined //A value has not been assigned yet.
+var test;
