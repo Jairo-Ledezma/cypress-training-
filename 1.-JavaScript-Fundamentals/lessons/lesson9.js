@@ -2,5 +2,5 @@ import { customerDetails } from "../helpers/printHelper.js"; // class imported f
 
 //var customerDetails = new CustomerDetails() // class instanciated into an object called customerDetails
 
-customerDetails.printFirstName('Jairo') // object can access the class methods 
-customerDetails.printLastName('Ledezma')
+customerDetails.printFirstName("Jairo"); // object can access the class methods
+customerDetails.printLastName("Ledezma");
