@@ -10,4 +10,5 @@ module.exports = defineConfig({
   },
   viewportWidth: 1920,
   viewportHeight: 1080,
+  //defaultCommandTimeout: 11000, global timeout, this will make cypress wait at least 11 seconds before failing on every command 
 });
