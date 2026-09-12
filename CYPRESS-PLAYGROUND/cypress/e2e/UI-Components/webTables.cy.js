@@ -338,3 +338,51 @@ it("managing web tables finding rows in the table with index (no identifiers) ad
       cy.wrap(tableColumns).eq(6).should("have.text", "38");
     });
 });
+
+it("web tables looping trough rows", () => {
+  // Create an array containing the ages that we want to test
+  const ages = [20, 30, 40, 200];
+
+  // Wrap the JavaScript array so we can use Cypress's .each() command
+  // .each() will execute the callback once for every value in the array
+  cy.wrap(ages).each((age) => {
+    // Find the Age input, clear any previous value,
+    // and type the current age from the array
+    // Example: first iteration = 20, second = 30, etc.
+    cy.get('[placeholder="Age"]').clear().type(age);
+
+    // Wait 500 milliseconds to give the table time to update
+    // after applying the age filter
+    cy.wait(500);
+
+    // Get all rows currently displayed in the table
+    // .each() will execute the callback once for every table row
+    cy.get("tbody tr").each((tableRows) => {
+      // Check if the current age is 200
+      if (age === 200) {
+        // When searching for age 200, the application doesn't
+        // return a matching row. Instead, it displays "No data found".
+        //
+        // tableRows = the current row being processed
+        // cy.wrap(tableRows) = converts that DOM element into a Cypress chain
+        // .find("td") = finds all cells inside the current row
+        // .last() = gets the last cell
+        // .should("contain.text", ...) = verifies that the cell
+        // contains the expected "No data found" message
+        cy.wrap(tableRows)
+          .find("td")
+          .last()
+          .should("contain.text", "No data found");
+      } else {
+        // For ages other than 200, we expect the last cell
+        // of each displayed row to contain the age we searched for
+        //
+        // Example:
+        // age = 20 → last cell should contain "20"
+        // age = 30 → last cell should contain "30"
+        // age = 40 → last cell should contain "40"
+        cy.wrap(tableRows).find("td").last().should("have.text", age);
+      }
+    });
+  });
+});
