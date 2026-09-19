@@ -1,4 +1,10 @@
 class FormLayoutsPage {
+  /**
+   * Method to submit using the grid form with valida user credentials
+   * @param {string} email - valid user email
+   * @param {string} password - valid user password
+   * @param {number} option - provide index of the option radio button. Start from 0.
+   */
   submitUsingTheGridForm1(email, password, option) {
     cy.get("#inputEmail1").type(email);
     cy.get("#inputPassword2").type(password);
@@ -6,6 +12,12 @@ class FormLayoutsPage {
     cy.contains("Sign in").click();
   }
 
+  /**
+   * Method to submit using the grid form with valida user credentials
+   * @param {string} email - valid user email
+   * @param {string} password - valid user password
+   * @param {number} option - provide index of the option radio button. Start from 0.
+   */
   submitUsingTheGridForm2(email, password, option) {
     cy.contains("nb-card", "Using the Grid").then((form) => {
       cy.wrap(form).find('[placeholder="Email"]').type(email);

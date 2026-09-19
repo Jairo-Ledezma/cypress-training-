@@ -5,7 +5,8 @@ import { onFormsLayoutsPage } from "../../page-Objects/formLayoutPage";
 import { navigateTo } from "../../page-Objects/navigationPage";
 
 beforeEach("Page Navigation", () => {
-  cy.visit("/");
+  cy.openHomePage();
+  
 });
 
 it("test with page object", () => {
