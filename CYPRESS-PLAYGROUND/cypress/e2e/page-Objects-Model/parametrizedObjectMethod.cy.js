@@ -6,7 +6,6 @@ import { navigateTo } from "../../page-Objects/navigationPage";
 
 beforeEach("Page Navigation", () => {
   cy.openHomePage();
-  
 });
 
 it("test with page object", () => {

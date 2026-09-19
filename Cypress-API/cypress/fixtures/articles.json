@@ -1,0 +1,22 @@
+{
+  "articles": [
+    {
+      "slug": "fuck this from slug",
+      "title": "fuck this from title",
+      "description": "fuck this from description",
+      "body": "fuck this from body",
+      "tagList": ["fuck", "this", "from", "tags"],
+      "createdAt": "2050-01-27T21:52:32.682Z",
+      "updatedAt": "2060-01-27T21:52:32.682Z",
+      "favorited": true,
+      "favoritesCount": 1,
+      "author": {
+        "username": "Jay",
+        "bio": "fuck this from bio",
+        "image": "fuck the image",
+        "following": true
+      }
+    }
+  ],
+  "articlesCount": 1
+}
