@@ -4,7 +4,7 @@ import { onLoginPage } from "../page-Objects/loginPage";
 
 it("first test POM", () => {
   cy.visit("/");
-  onLoginPage.loginFlow();
+  cy.login();
 });
 
 it("first test custom command and intercepting API calls", () => {
