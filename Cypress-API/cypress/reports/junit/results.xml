@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<testsuites>
+<testsuite name="Root Suite" timestamp="2026-09-26T19:16:09" tests="1" file="cypress/e2e/endToEndApi.cy.js" time="3.179" failures="0">
+  
+  <testcase name="API article creation and UI to delete it" time="3.155" classname="API article creation and UI to delete it"></testcase>
+  
+</testsuite>
+
+<testsuite name="Root Suite" timestamp="2026-09-26T19:16:13" tests="1" file="cypress/e2e/savingToken.cy.js" time="1.549" failures="0">
+  
+  <testcase name="modifying an API response catching original then modifying it" time="1.532" classname="modifying an API response catching original then modifying it"></testcase>
+  
+</testsuite>
+
+<testsuite name="Root Suite" timestamp="2026-09-26T19:16:15" tests="1" file="cypress/e2e/workingWithApis.cy.js" time="1.740" failures="0">
+  
+  <testcase name="waiting for browser API calls" time="1.713" classname="waiting for browser API calls"></testcase>
+  
+</testsuite>
+
+<testsuite name="Root Suite" timestamp="2026-09-26T19:16:02" tests="4" file="cypress/e2e/data-driven.cy.js" time="4.972" failures="0">
+  
+  <testcase name="data driven test for username 12" time="2.368" classname="data driven test for username 12"></testcase>
+  
+  <testcase name="data driven test for username 123" time="0.726" classname="data driven test for username 123"></testcase>
+  
+  <testcase name="data driven test for username 12345678901234567890" time="0.764" classname="data driven test for username 12345678901234567890"></testcase>
+  
+  <testcase name="data driven test for username 123456789012345678901" time="1.042" classname="data driven test for username 123456789012345678901"></testcase>
+  
+</testsuite>
+
+</testsuites>

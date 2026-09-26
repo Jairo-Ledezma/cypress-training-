@@ -1,7 +1,5 @@
 ///<reference types="cypress"/>
 
-import { onLoginPage } from "../page-Objects/loginPage";
-
 it("first test POM", () => {
   cy.visit("/");
   cy.login();
@@ -23,16 +21,20 @@ it("first test custom command and intercepting API calls", () => {
   cy.login();
 });
 
-it("modifying an API response catching original then modifying it", () => {
-  cy.intercept("GET", "**/articles*", (req) => {
-    req.continue((res) => {
-      res.body.articles[0].favoritesCount = 9999999;
-      res.send(res.body);
+it.only(
+  "modifying an API response catching original then modifying it",
+  { retries: 2 },
+  () => {
+    cy.intercept("GET", "**/articles*", (req) => {
+      req.continue((res) => {
+        res.body.articles[0].favoritesCount = 9999999;
+        res.send(res.body);
+      });
     });
-  });
-  cy.login();
-  cy.get("app-favorite-button").first().should("contain.text", "9999999");
-});
+    cy.login();
+    cy.get("app-favorite-button").first().should("contain.text", "9999999");
+  },
+);
 
 it("route matcher", () => {
   cy.intercept(

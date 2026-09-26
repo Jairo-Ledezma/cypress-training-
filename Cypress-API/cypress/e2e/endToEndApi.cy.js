@@ -1,6 +1,8 @@
 ///<reference types="cypress"/>
+import { faker } from "@faker-js/faker";
 
-it("API article creation and UI to delete it", () => {
+it.only("API article creation and UI to delete it", () => {
+  const articleTitle = faker.person.fullName();
   cy.request({
     url: "https://conduit-api.bondaracademy.com/api/users/login",
     method: "POST",
@@ -19,28 +21,28 @@ it("API article creation and UI to delete it", () => {
       method: "POST",
       body: {
         article: {
-          title: "test coming from VS",
-          description: "some description",
-          body: "this is a body",
+          title: articleTitle,
+          description: faker.person.jobTitle(),
+          body: faker.lorem.paragraph(10),
           tagList: [],
         },
       },
       headers: { Authorization: accessToken },
     }).then((response) => {
       expect(response.status).to.equal(201);
-      expect(response.body.article.title).to.equal("test coming from VS");
+      expect(response.body.article.title).to.equal(articleTitle);
     });
   });
 
   cy.login();
-  cy.contains("test coming from VS").click();
+  cy.contains(articleTitle).click();
   cy.intercept("GET", "**/articles*").as("articleApiCall");
   cy.contains("button", "Delete Article").first().click();
   cy.wait("@articleApiCall");
-  cy.get("app-article-list").should("not.contain.text", "test coming from VS");
+  cy.get("app-article-list").should("not.contain.text", articleTitle);
 });
 
-it.only("whole flow with API", () => {
+it("whole flow with API", () => {
   cy.request({
     url: "https://conduit-api.bondaracademy.com/api/users/login",
     method: "POST",
