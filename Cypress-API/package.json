@@ -7,7 +7,7 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "delete:reports": "rm cypress/reports/* || true",
+    "delete:reports": "rm -r cypress/reports/* || true",
     "prereport": "npm run delete:reports",
     "junit:merge": "npx junit-merge -d 'cypress/reports/junit' -o 'cypress/reports/junit/results.xml'",
     "cy:run:all": "npm run prereport && npx cypress run || true && npm run junit:merge"
