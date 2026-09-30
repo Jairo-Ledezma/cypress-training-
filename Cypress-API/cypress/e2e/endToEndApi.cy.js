@@ -1,7 +1,7 @@
 ///<reference types="cypress"/>
 import { faker } from "@faker-js/faker";
 
-it.only("API article creation and UI to delete it", () => {
+it("API article creation and UI to delete it", () => {
   const articleTitle = faker.person.fullName();
   cy.request({
     url: "https://conduit-api.bondaracademy.com/api/users/login",
@@ -34,7 +34,7 @@ it.only("API article creation and UI to delete it", () => {
     });
   });
 
-  cy.login();
+  cy.uiLogin();
   cy.contains(articleTitle).click();
   cy.intercept("GET", "**/articles*").as("articleApiCall");
   cy.contains("button", "Delete Article").first().click();

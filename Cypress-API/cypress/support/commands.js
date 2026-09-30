@@ -25,24 +25,46 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add("login", () => {
-  cy.env(["username", "password" , 'apiUrl']).then(({ username, password , apiUrl}) => {
-    cy.request({
-      url: apiUrl+"/users/login",
-      method: "POST",
-      body: {
-        user: {
-          email: username,
-          password: password,
+  cy.env(["username", "password", "apiUrl"]).then(
+    ({ username, password, apiUrl }) => {
+      cy.request({
+        url: apiUrl + "/users/login",
+        method: "POST",
+        body: {
+          user: {
+            email: username,
+            password: password,
+          },
         },
-      },
-    }).then((response) => {
-      expect(response.status).to.equal(200);
-      const accessToken = response.body.user.token;
-      cy.visit("/", {
-        onBeforeLoad(win) {
-          win.localStorage.setItem("jwtToken", accessToken);
-        },
+      }).then((response) => {
+        expect(response.status).to.equal(200);
+        const accessToken = response.body.user.token;
+        cy.visit("/", {
+          onBeforeLoad(win) {
+            win.localStorage.setItem("jwtToken", accessToken);
+          },
+        });
       });
-    });
-  });
+    },
+  );
+});
+
+Cypress.Commands.add("uiLogin", () => {
+  cy.session(
+    "user",
+    () => {
+      cy.env(["username", "password"]).then(({ username, password }) => {
+        cy.visit("/");
+        cy.contains("Sign in").click();
+        cy.get('[placeholder="Email"]').type(username);
+        cy.get('[placeholder="Password"]').type(password);
+        cy.contains("button", "Sign in").click();
+        cy.location("pathname").should("eq", "/");
+      });
+    },
+    {
+      cacheAcrossSpecs: true,
+    },
+  );
+  cy.visit("/");
 });

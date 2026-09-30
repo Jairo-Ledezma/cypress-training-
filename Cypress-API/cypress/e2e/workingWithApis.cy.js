@@ -20,7 +20,7 @@ it("first test custom command and intercepting API calls", () => {
     },
   );
 
-  cy.login();
+  cy.uiLogin();
 });
 
 it("modifying an API response catching original then modifying it", () => {
@@ -30,7 +30,7 @@ it("modifying an API response catching original then modifying it", () => {
       res.send(res.body);
     });
   });
-  cy.login();
+  cy.uiLogin();
   cy.get("app-favorite-button").first().should("contain.text", "9999999");
 });
 
@@ -49,12 +49,12 @@ it("route matcher", () => {
     },
   );
 
-  cy.login();
+  cy.uiLogin();
 });
 
 it.only("waiting for browser API calls", () => {
   cy.intercept({ method: "GET", pathname: "articles" }).as("articleApiCall");
-  cy.login();
+  cy.uiLogin();
   cy.wait("@articleApiCall").then((apiArticleObject) => {
     console.log(apiArticleObject);
     expect(apiArticleObject.response.body.articles[0].title).to.contain(
